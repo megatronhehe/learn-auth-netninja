@@ -4,16 +4,17 @@ import { Link } from "react-router-dom";
 import AuthContext from "../context/AuthContext/AuthContext";
 
 export default function Navbar() {
-	const { user } = useContext(AuthContext);
+	const { user, logout } = useContext(AuthContext);
 
 	return (
 		<nav className="flex items-center justify-between p-6 mb-6 border-b">
 			<h1 className="text-xl font-semibold">TodoApp</h1>
-			<div className="flex gap-4 text-sm">
+			{user?.email}
+			<div className="flex gap-6 text-sm">
 				{user ? (
 					<>
-						<Link to=".">Todos</Link>
-						<h2>{user.email}</h2>
+						<Link to=".">My Todos</Link>
+						<button onClick={logout}>Log out</button>
 					</>
 				) : (
 					<>
