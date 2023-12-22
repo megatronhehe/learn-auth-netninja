@@ -9,13 +9,14 @@ import {
 
 import Todos from "./pages/Todos";
 import Layout from "./components/Layout";
+import Login from "./pages/Login/Login";
 
 function App() {
 	const router = createBrowserRouter(
 		createRoutesFromElements(
 			<Route path="/" element={<Layout />}>
 				<Route index element={<Todos />} />
-				<Route path="/login" element={<h1>login</h1>} />
+				<Route path="/login" element={<Login />} />
 				<Route path="/signup" element={<h1>signup</h1>} />
 			</Route>
 		)
