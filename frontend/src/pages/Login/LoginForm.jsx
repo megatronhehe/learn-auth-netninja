@@ -5,8 +5,8 @@ export default function LoginForm() {
 	const { login, loading, error } = useLogin();
 
 	const [form, setForm] = useState({
-		email: "",
-		password: "",
+		email: "satya@gmail.com",
+		password: "Abc123*asdasdasd",
 	});
 
 	function handleChange(e) {

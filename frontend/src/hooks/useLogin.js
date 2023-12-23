@@ -1,9 +1,12 @@
 import { useContext, useState } from "react";
 
 import AuthContext from "../context/AuthContext/AuthContext";
+import { useNavigate } from "react-router-dom";
 
 export function useLogin() {
 	const { setUser } = useContext(AuthContext);
+
+	const nav = useNavigate();
 
 	const [loading, setLoading] = useState(false);
 	const [error, setError] = useState(null);
@@ -28,6 +31,7 @@ export function useLogin() {
 
 			localStorage.setItem("todoUser", JSON.stringify(json));
 			setUser(json);
+			nav("/");
 		} catch (error) {
 			setError(error.message);
 		} finally {
