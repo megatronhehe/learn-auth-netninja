@@ -48,7 +48,7 @@ export default function LoginForm() {
 				}}
 				disabled={loading}
 				className={`py-2 font-normal text-white  rounded-xl ${
-					loading ? "bg-gray-400" : "bg-green-400"
+					loading ? "bg-gray-300" : "bg-green-400"
 				}`}
 			>
 				Submit
