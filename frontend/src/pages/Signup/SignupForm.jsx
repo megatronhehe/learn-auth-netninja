@@ -24,7 +24,7 @@ export default function SignupForm() {
 				placeholder="john@doe.com"
 				className="px-4 py-2 border outline-none rounded-xl"
 			/>
-			<label>Password</label>
+			<label htmlFor="password">Password</label>
 			<input
 				id="password"
 				type="password"
@@ -32,9 +32,9 @@ export default function SignupForm() {
 				onChange={handleChange}
 				value={form.password}
 				placeholder="your password here"
-				className="px-4 py-2 border outline-none rounded-xl"
+				className="px-4 py-2 border outline-none rounded-xl focus:border-gray-400"
 			/>
-			<label>Confirm Password</label>
+			<label htmlFor="confirm_password">Confirm Password</label>
 			<input
 				id="confirm_password"
 				type="password"

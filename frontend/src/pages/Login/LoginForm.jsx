@@ -26,7 +26,7 @@ export default function LoginForm() {
 				placeholder="john@doe.com"
 				className="px-4 py-2 border outline-none rounded-xl"
 			/>
-			<label>Password</label>
+			<label htmlFor="password">Password</label>
 			<input
 				id="password"
 				type="password"
