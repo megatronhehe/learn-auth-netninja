@@ -1,8 +1,12 @@
 import React, { useState } from "react";
 import { useLogin } from "../../hooks/useLogin";
 
+import { RiEyeCloseLine, RiEyeLine } from "react-icons/ri";
+
 export default function LoginForm() {
 	const { login, loading, error } = useLogin();
+
+	const [showPw, setShowPw] = useState(false);
 
 	const [form, setForm] = useState({
 		email: "satya@gmail.com",
@@ -12,6 +16,11 @@ export default function LoginForm() {
 	function handleChange(e) {
 		const { name, value } = e.target;
 		setForm((prev) => ({ ...prev, [name]: value }));
+	}
+
+	function toggleShowPw(e) {
+		e.preventDefault();
+		setShowPw((prev) => !prev);
 	}
 
 	return (
@@ -26,10 +35,20 @@ export default function LoginForm() {
 				placeholder="john@doe.com"
 				className="px-4 py-2 border outline-none rounded-xl"
 			/>
-			<label htmlFor="password">Password</label>
+
+			<div className="flex items-center justify-between">
+				<label htmlFor="password">Password</label>
+				<button
+					onClick={toggleShowPw}
+					className="flex items-center gap-2 text-gray-400"
+				>
+					<span className="text-xs">{showPw ? "hide" : "show"} password</span>
+					{showPw ? <RiEyeLine /> : <RiEyeCloseLine />}
+				</button>
+			</div>
 			<input
 				id="password"
-				type="password"
+				type={`${showPw ? "text" : "password"}`}
 				name="password"
 				onChange={handleChange}
 				value={form.password}
