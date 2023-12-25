@@ -1,9 +1,13 @@
 import React, { useState } from "react";
 
 import { useSignup } from "../../hooks/useSignup";
+import { useShowPassword } from "../../hooks/useShowPassword";
+
+import { RiEyeCloseLine, RiEyeLine } from "react-icons/ri";
 
 export default function SignupForm() {
 	const { signup, loading, error } = useSignup();
+	const { isShow, toggleShowPassword } = useShowPassword();
 
 	const [form, setForm] = useState({
 		email: "",
@@ -30,10 +34,19 @@ export default function SignupForm() {
 				placeholder="john@doe.com"
 				className="px-4 py-2 border outline-none rounded-xl"
 			/>
-			<label htmlFor="password">Password</label>
+			<div className="flex items-center justify-between">
+				<label htmlFor="password">Password</label>
+				<button
+					onClick={toggleShowPassword}
+					className="flex items-center gap-2 text-gray-400"
+				>
+					<span className="text-xs">{isShow ? "hide" : "show"} password</span>
+					{isShow ? <RiEyeLine /> : <RiEyeCloseLine />}
+				</button>
+			</div>
 			<input
 				id="password"
-				type="password"
+				type={isShow ? "text" : "password"}
 				name="password"
 				onChange={handleChange}
 				value={form.password}
@@ -43,7 +56,7 @@ export default function SignupForm() {
 			<label htmlFor="confirm_password">Confirm Password</label>
 			<input
 				id="confirm_password"
-				type="password"
+				type={isShow ? "text" : "password"}
 				name="confirm_password"
 				onChange={handleChange}
 				value={form.confirm_password}
