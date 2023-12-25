@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import { useLogin } from "../../hooks/useLogin";
+import { useShowPassword } from "../../hooks/useShowPassword";
 
 import { RiEyeCloseLine, RiEyeLine } from "react-icons/ri";
 
 export default function LoginForm() {
 	const { login, loading, error } = useLogin();
-
-	const [showPw, setShowPw] = useState(false);
+	const { isShow, toggleShowPassword } = useShowPassword();
 
 	const [form, setForm] = useState({
 		email: "satya@gmail.com",
@@ -16,11 +16,6 @@ export default function LoginForm() {
 	function handleChange(e) {
 		const { name, value } = e.target;
 		setForm((prev) => ({ ...prev, [name]: value }));
-	}
-
-	function toggleShowPw(e) {
-		e.preventDefault();
-		setShowPw((prev) => !prev);
 	}
 
 	return (
@@ -39,16 +34,16 @@ export default function LoginForm() {
 			<div className="flex items-center justify-between">
 				<label htmlFor="password">Password</label>
 				<button
-					onClick={toggleShowPw}
+					onClick={toggleShowPassword}
 					className="flex items-center gap-2 text-gray-400"
 				>
-					<span className="text-xs">{showPw ? "hide" : "show"} password</span>
-					{showPw ? <RiEyeLine /> : <RiEyeCloseLine />}
+					<span className="text-xs">{isShow ? "hide" : "show"} password</span>
+					{isShow ? <RiEyeLine /> : <RiEyeCloseLine />}
 				</button>
 			</div>
 			<input
 				id="password"
-				type={`${showPw ? "text" : "password"}`}
+				type={`${isShow ? "text" : "password"}`}
 				name="password"
 				onChange={handleChange}
 				value={form.password}
