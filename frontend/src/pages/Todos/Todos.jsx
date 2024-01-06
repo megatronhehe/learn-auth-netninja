@@ -15,7 +15,7 @@ export default function Todos() {
 	}
 
 	// YES AUTHENTICATED
-	const { todos, setTodos, fetchTodos } = useContext(TodosContext);
+	const { todos, setTodos, fetchTodos, deleteTodo } = useContext(TodosContext);
 
 	useEffect(() => {
 		fetchTodos(user.token);
@@ -43,7 +43,10 @@ export default function Todos() {
 						className="flex items-center justify-between px-3 py-2 border rounded-xl"
 					>
 						{todo.title}
-						<button className="px-3 py-1 text-xs text-white bg-red-300 rounded-md">
+						<button
+							onClick={() => deleteTodo(user.token, todo._id)}
+							className="px-3 py-1 text-xs text-white bg-red-300 rounded-md"
+						>
 							delete
 						</button>
 					</li>

@@ -25,8 +25,29 @@ export default function TodosContextProvider({ children }) {
 		}
 	}
 
+	async function deleteTodo(token, id) {
+		try {
+			const response = await fetch(`http://localhost:4000/api/todos/${id}`, {
+				headers: {
+					Authorization: `Bearer ${token}`,
+				},
+				method: "DELETE",
+			});
+
+			const json = await response.json();
+
+			if (!response.ok) {
+				throw new Error("something went wrong");
+			}
+
+			setTodos((prev) => prev.filter((todo) => todo._id !== id));
+		} catch (error) {
+			return alert(error.message);
+		}
+	}
+
 	return (
-		<TodosContext.Provider value={{ todos, setTodos, fetchTodos }}>
+		<TodosContext.Provider value={{ todos, setTodos, fetchTodos, deleteTodo }}>
 			{children}
 		</TodosContext.Provider>
 	);
