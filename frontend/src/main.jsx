@@ -4,11 +4,14 @@ import App from "./App.jsx";
 import "./index.css";
 
 import AuthContextProvider from "./context/AuthContext/AuthContextProvider.jsx";
+import TodosContextProvider from "./context/TodosContext/TodosContextProvider.jsx";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
 	<React.StrictMode>
 		<AuthContextProvider>
-			<App />
+			<TodosContextProvider>
+				<App />
+			</TodosContextProvider>
 		</AuthContextProvider>
 	</React.StrictMode>
 );

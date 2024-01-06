@@ -7,7 +7,7 @@ import {
 	RouterProvider,
 } from "react-router-dom";
 
-import Todos from "./pages/Todos";
+import Todos from "./pages/Todos/Todos";
 import Layout from "./components/Layout";
 import Login from "./pages/Login/Login";
 import Signup from "./pages/Signup/Signup";
