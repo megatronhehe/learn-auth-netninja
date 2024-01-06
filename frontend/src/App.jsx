@@ -11,6 +11,7 @@ import Todos from "./pages/Todos";
 import Layout from "./components/Layout";
 import Login from "./pages/Login/Login";
 import Signup from "./pages/Signup/Signup";
+import Error from "./pages/Error/Error";
 
 function App() {
 	const router = createBrowserRouter(
@@ -19,6 +20,7 @@ function App() {
 				<Route index element={<Todos />} />
 				<Route path="/login" element={<Login />} />
 				<Route path="/signup" element={<Signup />} />
+				<Route path="*" element={<Error />} />
 			</Route>
 		)
 	);
