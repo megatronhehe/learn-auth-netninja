@@ -46,8 +46,33 @@ export default function TodosContextProvider({ children }) {
 		}
 	}
 
+	async function createTodo(token, input) {
+		try {
+			const response = await fetch(`http://localhost:4000/api/todos/`, {
+				headers: {
+					Authorization: `Bearer ${token}`,
+					"Content-Type": "application/json",
+				},
+				body: JSON.stringify(input),
+				method: "POST",
+			});
+
+			const json = await response.json();
+
+			if (!response.ok) {
+				throw new Error("something went wrong");
+			}
+
+			setTodos((prev) => [...prev, json]);
+		} catch (error) {
+			return alert(error.message);
+		}
+	}
+
 	return (
-		<TodosContext.Provider value={{ todos, setTodos, fetchTodos, deleteTodo }}>
+		<TodosContext.Provider
+			value={{ todos, setTodos, fetchTodos, deleteTodo, createTodo }}
+		>
 			{children}
 		</TodosContext.Provider>
 	);
