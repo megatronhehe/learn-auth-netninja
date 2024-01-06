@@ -2,9 +2,11 @@ import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 
 import AuthContext from "../context/AuthContext/AuthContext";
+import TodosContext from "../context/TodosContext/TodosContext";
 
 export default function Navbar() {
 	const { user, logout } = useContext(AuthContext);
+	const { setTodos } = useContext(TodosContext);
 
 	return (
 		<nav className="flex items-center justify-between p-6 mb-6 border-b">
@@ -14,7 +16,14 @@ export default function Navbar() {
 				{user ? (
 					<>
 						<Link to=".">My Todos</Link>
-						<button onClick={logout}>Log out</button>
+						<button
+							onClick={() => {
+								logout();
+								setTodos([]);
+							}}
+						>
+							Log out
+						</button>
 					</>
 				) : (
 					<>
